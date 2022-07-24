@@ -29,6 +29,10 @@ img {
   opacity: 0.7;
 }
 
+.btn[disabled] {
+  color: #696969;
+}
+
 .btn:not(:last-child) {
   margin-right: 10px;
 }
