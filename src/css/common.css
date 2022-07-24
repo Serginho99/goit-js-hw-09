@@ -16,3 +16,28 @@ img {
   display: block;
   max-width: 100%;
 }
+
+.btn {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 200;
+  border-radius: 5px;
+  border-color: transparent;
+  padding: 20px 60px;
+  display: flex;
+  transition: 250ms;
+  opacity: 0.7;
+}
+
+.btn:not(:last-child) {
+  margin-right: 10px;
+}
+
+.btn:hover {
+  color: #696969;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
