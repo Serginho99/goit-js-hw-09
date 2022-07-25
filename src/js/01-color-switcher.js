@@ -1,4 +1,4 @@
-// import '/src/css/common.css';
+import '/src/css/01-color-switcher.css';
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
