@@ -27,10 +27,17 @@ img {
   display: flex;
   transition: 250ms;
   opacity: 0.7;
+  cursor: pointer;
 }
 
 .btn[disabled] {
   color: #696969;
+}
+
+.btn[disabled]:hover {
+  color: #696969;
+  border-color: transparent;
+  cursor: auto;
 }
 
 .btn:not(:last-child) {
@@ -39,6 +46,7 @@ img {
 
 .btn:hover {
   color: #696969;
+  border-color: aqua;
 }
 
 .wrapper {
@@ -73,7 +81,7 @@ img {
   height: 30px;
 }
 
-[data-start] {
+.button {
   font-family: inherit;
   height: 30px;
   width: 70px;
@@ -84,6 +92,6 @@ img {
   transition: 250ms;
 }
 
-[data-start]:hover {
+.button:hover {
   border-color: aqua;
 }
