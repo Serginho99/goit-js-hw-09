@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const startBtn = document.querySelector('[data-start]');
 startBtn.setAttribute('disabled', 'disabled');
@@ -15,14 +16,15 @@ const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: Date.now(),
-  minuteIncrement: 1,
+  minuteIncrement: 1000,
   onClose(selectedDates) {
     //  console.log(selectedDates[0]);
     deltaTime = selectedDates[0] - options.defaultDate;
     if (deltaTime < 0) {
       startBtn.setAttribute('disabled', 'disabled');
-      return window.alert('Please choose a date in the future');
+      Notify.failure('Please choose a date in the future');
     } else if (deltaTime > 0) {
+      Notify.success('Successful');
       return startBtn.removeAttribute('disabled', 'disabled');
     }
   },
@@ -30,26 +32,28 @@ const options = {
 
 flatpickr(inputText, options);
 
-const timer = {
-  start() {
-    if (!options.enableTime) {
-      return;
-    }
-    options.enableTime = false;
-    timerId = setInterval(() => {
-      deltaTime -= 1;
-      console.log(deltaTime);
+function start() {
+  if (!options.enableTime) {
+    return;
+  }
+  options.enableTime = false;
+  timerId = setInterval(() => {
+    if (deltaTime > 0) {
+      deltaTime -= options.minuteIncrement;
       const { days, hours, minutes, seconds } = convertMs(deltaTime);
       updateClockFace({ days, hours, minutes, seconds });
-    }, options.minuteIncrement);
-  },
-};
+    }
+    if (deltaTime <= 0) {
+      clearInterval(timerId);
+    }
+  }, options.minuteIncrement);
+}
 
 startBtn.addEventListener('click', onClickStartBtn);
 
 function onClickStartBtn() {
-  timer.start();
-  //   startBtn.setAttribute('disabled', 'disabled');
+  start();
+  //  startBtn.setAttribute('disabled', 'disabled');
 }
 
 function updateClockFace({ days, hours, minutes, seconds }) {
