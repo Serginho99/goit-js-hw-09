@@ -40,3 +40,16 @@
 .hidden {
   opacity: 0.2;
 }
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  width: 100px;
+  font-family: inherit;
+  border-radius: 3px;
+  border-color: transparent;
+}
+
+.button:hover {
+  border-color: aqua;
+}
