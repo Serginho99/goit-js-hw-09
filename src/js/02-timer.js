@@ -25,7 +25,7 @@ const options = {
       startBtn.setAttribute('disabled', 'disabled');
       Notify.failure('Please choose a date in the future');
     } else if (deltaTime > 0) {
-      Notify.success('Successful');
+      Notify.success('Successful, go try!');
       return startBtn.removeAttribute('disabled', 'disabled');
     }
   },

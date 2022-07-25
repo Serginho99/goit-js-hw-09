@@ -94,4 +94,9 @@ img {
 
 .button:hover {
   border-color: aqua;
+  cursor: pointer;
+}
+.button[disabled]:hover {
+  border-color: transparent;
+  cursor: auto;
 }
