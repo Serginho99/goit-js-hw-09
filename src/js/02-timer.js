@@ -5,6 +5,7 @@ import 'flatpickr/dist/themes/dark.css';
 
 const startBtn = document.querySelector('[data-start]');
 startBtn.setAttribute('disabled', 'disabled');
+startBtn.classList.add('button');
 const inputText = document.querySelector('#datetime-picker');
 const daysEl = document.querySelector('[data-days]');
 const hoursEl = document.querySelector('[data-hours]');
