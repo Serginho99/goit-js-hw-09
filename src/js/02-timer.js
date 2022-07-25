@@ -38,6 +38,8 @@ function start() {
     return;
   }
   options.enableTime = false;
+  const { days, hours, minutes, seconds } = convertMs(deltaTime);
+  updateClockFace({ days, hours, minutes, seconds });
   timerId = setInterval(() => {
     if (deltaTime > 0) {
       deltaTime -= options.minuteIncrement;
