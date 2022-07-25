@@ -45,3 +45,45 @@ img {
   display: flex;
   justify-content: center;
 }
+
+.timer {
+  display: flex;
+  /* justify-content: center; */
+  text-align: center;
+  margin-top: 15px;
+}
+
+.field + .field {
+  margin-left: 10px;
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+}
+
+.value {
+  color: blue;
+  font-weight: 600;
+  width: 50px;
+  display: block;
+}
+
+#datetime-picker {
+  height: 30px;
+}
+
+[data-start] {
+  font-family: inherit;
+  height: 30px;
+  width: 50px;
+  border-radius: 3px;
+  border-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  transition: 250ms;
+}
+
+[data-start]:hover {
+  border-color: aqua;
+}

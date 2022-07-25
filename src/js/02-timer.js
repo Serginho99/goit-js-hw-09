@@ -1,6 +1,7 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import 'flatpickr/dist/themes/dark.css';
 
 const startBtn = document.querySelector('[data-start]');
 startBtn.setAttribute('disabled', 'disabled');
