@@ -35,29 +35,22 @@ const options = {
 
 flatpickr(inputText, options);
 
-function start() {
+startBtn.addEventListener('click', onClickStartBtn);
+
+function onClickStartBtn() {
   if (!options.enableTime) {
     return;
   }
   options.enableTime = false;
-  const { days, hours, minutes, seconds } = convertMs(deltaTime);
-  updateClockFace({ days, hours, minutes, seconds });
+  updateClockFace(convertMs(deltaTime));
   timerId = setInterval(() => {
-    if (deltaTime > 0) {
-      deltaTime -= options.minuteIncrement;
-      const { days, hours, minutes, seconds } = convertMs(deltaTime);
-      updateClockFace({ days, hours, minutes, seconds });
-    }
+    deltaTime -= options.minuteIncrement;
+    updateClockFace(convertMs(deltaTime));
     if (deltaTime <= 0) {
       clearInterval(timerId);
     }
   }, options.minuteIncrement);
-}
 
-startBtn.addEventListener('click', onClickStartBtn);
-
-function onClickStartBtn() {
-  start();
   //  startBtn.setAttribute('disabled', 'disabled');
 }
 
