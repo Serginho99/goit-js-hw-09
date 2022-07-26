@@ -41,16 +41,19 @@ function onClickStartBtn() {
   if (!options.enableTime) {
     return;
   }
+
   options.enableTime = false;
   updateClockFace(convertMs(deltaTime));
+
   timerId = setInterval(() => {
     deltaTime -= options.minuteIncrement;
     updateClockFace(convertMs(deltaTime));
-    if (deltaTime <= 0) {
+
+    if (deltaTime < options.minuteIncrement) {
+      Notify.success('Time to training!');
       clearInterval(timerId);
     }
   }, options.minuteIncrement);
-
   //  startBtn.setAttribute('disabled', 'disabled');
 }
 
