@@ -21,7 +21,6 @@ const options = {
   defaultDate: Date.now(),
   minuteIncrement: 1000,
   onClose(selectedDates) {
-    //  console.log(selectedDates[0]);
     deltaTime = selectedDates[0] - options.defaultDate;
     if (deltaTime < 0) {
       startBtn.setAttribute('disabled', 'disabled');
@@ -38,25 +37,27 @@ flatpickr(inputText, options);
 startBtn.addEventListener('click', onClickStartBtn);
 
 function onClickStartBtn() {
+  Notify.success('The countdown has started!');
+  start();
+  timerId = setInterval(paramsInterval, options.minuteIncrement);
+}
+
+function start() {
   if (!options.enableTime) {
     return;
   }
-
   options.enableTime = false;
-  updateClockFace(convertMs(deltaTime));
-
-  timerId = setInterval(() => {
-    deltaTime -= options.minuteIncrement;
-    updateClockFace(convertMs(deltaTime));
-
-    if (deltaTime < options.minuteIncrement) {
-      Notify.success('Time to training!');
-      clearInterval(timerId);
-    }
-  }, options.minuteIncrement);
   //  startBtn.setAttribute('disabled', 'disabled');
+  updateClockFace(convertMs(deltaTime));
 }
-
+function paramsInterval() {
+  deltaTime -= options.minuteIncrement;
+  updateClockFace(convertMs(deltaTime));
+  if (deltaTime < options.minuteIncrement) {
+    Notify.success('Time to training!');
+    clearInterval(timerId);
+  }
+}
 function updateClockFace({ days, hours, minutes, seconds }) {
   daysEl.textContent = days;
   hoursEl.textContent = hours;
